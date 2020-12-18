@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const baseUrl = "https://swapi.dev/api";
 	return {
 		store: {
 			demo: [
@@ -19,10 +20,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			fetchData: () => {
+				fetch(`${baseUrl}/planets`, {
+					mode: "no-cors"
+				})
+					.then(res => res.json())
+					.then(data => setStore({ planets: data }));
 			},
 			changeColor: (index, color) => {
 				//get the store
