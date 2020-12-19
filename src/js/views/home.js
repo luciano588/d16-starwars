@@ -1,29 +1,28 @@
 import React, { useContext } from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
+import { Card } from "../store/card";
 
 export const Home = () => {
     const {store, actions} = useContext(context);
-    const buildRow = (data) => data.map((item, index)=>{
-return  <Card
-key={index}
-            img={""}
-            title={item.name}
-            description={}
+    
+    const buildRow = (data,type) => {
+        return data.map((item, index)=>{
+            return <Card 
+                    img={"https://via.placeholder.com/300"}
+                    key={index}
+                    title={item.name}
+                    btnURL={`/${type}/${index}`} 
+                    btnTitle="View more" />
+        );
+    });
 
-/>
-
-    })
     return (
 	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<div className="row">{buildRow.</div>
-        <p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
-	</div>)
+		<h1>Star Wars Blog!</h1>
+		<div className="resource-row">{buildRow(store.planets, "planets")}</div>
+		<div className="row">{buildRow(store.people, "people")}</div>
+        <div className="row">{buildRow(store.vehicles, "vehicles")}</div>     
+    </div>
+    );
 };
