@@ -13,7 +13,8 @@ export const Home = () => {
 					img={"https://via.placeholder.com/300"}
 					key={index}
 					title={item.name}
-					btnURL={`/${type}/${index}`}
+					btnUrl={`/${item.name}/${index}`}
+					// btnUrl={`/${type}/${index}`}
 					btnTitle="View more"
 				/>
 			);
